@@ -10,7 +10,7 @@ class MyListView extends StatefulWidget {
 
 class _MyListViewState extends State<MyListView> {
   final double containerWidth = 100.0;
-  List<bool> shouldScale = List.generate(2000, (index) => false);
+  List<bool> shouldScale = List.generate(20, (index) => false);
   int hoveredIndex = -1;
   bool hover = false;
   @override
@@ -19,27 +19,86 @@ class _MyListViewState extends State<MyListView> {
     // int numberOfContainer = MediaQuery.of(context).size.width ~/ containerWidth;
     int numberOfContainer = 5;
     return NestedScrollView(
-      scrollDirection: Axis.horizontal,
+      // scrollDirection: Axis.vertical,
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         const SliverAppBar(),
       ],
       body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: 2000,
+        scrollDirection: Axis.horizontal,
+        itemCount: 20,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () {
-              setState(() {});
-            },
-            onHover: (value) {
-              setState(() {
-                shouldScale[index] = !shouldScale[index];
-                // hover = true;
-              });
-            },
-            child: ScalableContainer(
-              containerSize: containerWidth,
-              shouldScale: shouldScale[index],
+            // onTap: () {
+            //   setState(() {});
+            // },
+            // onHover: (value) {
+            //   setState(() {
+            //     shouldScale[index] = !shouldScale[index];
+            //     // hover = true;
+            //   });
+            // },
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                  ScalableContainer(
+                    containerSize: containerWidth,
+                    shouldScale: shouldScale[index],
+                  ),
+                ],
+              ),
             ),
           );
           // return Container(
@@ -89,20 +148,33 @@ class ScalableContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint("ScalableContainer");
-    return Transform.scale(
-      scale: shouldScale ? 1.5 : 1.0,
-      child: Container(
-        width: containerSize,
-        height: containerSize,
-        color: Colors.blue,
-        child: Center(
-          child: Text(
-            shouldScale ? 'Scaled' : 'Not Scaled',
-            style: const TextStyle(color: Colors.white),
-          ),
+    return Container(
+      padding: EdgeInsets.all(10),
+      width: containerSize,
+      height: containerSize,
+      color: Colors.blue,
+      child: Center(
+        child: Text(
+          shouldScale ? 'Scaled' : 'Not Scaled',
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );
+    // return Transform.scale(
+    //   scale: shouldScale ? 1.5 : 1.0,
+    //   child: Container(
+    //     padding: EdgeInsets.all(10),
+    //     width: containerSize,
+    //     height: containerSize,
+    //     color: Colors.blue,
+    //     child: Center(
+    //       child: Text(
+    //         shouldScale ? 'Scaled' : 'Not Scaled',
+    //         style: const TextStyle(color: Colors.white),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }
 
